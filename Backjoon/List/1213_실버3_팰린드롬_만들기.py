@@ -69,8 +69,10 @@ first_half = ''
 
 for key in sorted(count_dict.keys()):
     first_half += key * (count_dict[key] // 2)
+
 second_half = first_half[::-1]
+
 if odd_count == 1:
-    print(first_half + odd_char * count_dict[odd_char] + second_half)
+    print(first_half + odd_char + second_half)
 else:
     print(first_half + second_half)
