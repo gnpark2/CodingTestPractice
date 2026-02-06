@@ -40,6 +40,21 @@ I'm Sorry Hansoo
 
 """
 
+"""
+1차 시도 - 오답
+
+if odd_count == 1:
+    print(first_half + odd_char * count_dict[odd_char] + second_half)
+else:
+    print(first_half + second_half)
+
+odd_char를 count_dict[odd_char]만큼 곱해서 출력하는 부분에서 에러 발생
+
+print(first_half + odd_char + second_half)
+로 수정하여 문제 해결
+
+"""
+
 import sys
 input = sys.stdin.readline
 
