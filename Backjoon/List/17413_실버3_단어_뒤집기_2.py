@@ -61,7 +61,6 @@ input = sys.stdin.readline
 
 S = input().rstrip()
 result = ''
-stack = []
 i = 0
 
 while i < len(S):
@@ -75,9 +74,9 @@ while i < len(S):
         result += ' '
         i += 1
     else:
+        temp = ''
         while i < len(S) and S[i] != ' ' and S[i] != '<':
-            stack.append(S[i])
+            temp += S[i]
             i += 1
-        while stack:
-            result += stack.pop()
+        result += temp[::-1]
 print(result)
