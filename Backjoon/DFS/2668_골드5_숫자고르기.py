@@ -31,10 +31,40 @@
 
 """
 
+"""
+사이클을 구하는 문제
+
+방문 여부를 판단하여 이후 노드로 진행
+이후의 노드가 이미 방문한 노드일 경우 반복 종료
+마지막의 노드와 처음의 시작 노드가 같을 경우 사이클로 판단
+
+i 증가 후 다시 반복
+"""
+
 import sys
 input = sys.stdin.readline
 
 N = int(input())
-graph = [int(input()) for _ in range(N)]
-result = []
+graph = [0]
+result = set()
 
+for i in range(N):
+    graph.append(int(input()))
+
+for i in range(1, N + 1):
+    visited = [0] * (N + 1)
+    current = i
+    
+    while visited[current] == 0:
+        visited[current] = 1
+        current = graph[current]
+    
+    if current == i:
+        result.add(i)
+
+result = list(result)
+result.sort()
+
+print(len(result))
+for i in result:
+    print(i)

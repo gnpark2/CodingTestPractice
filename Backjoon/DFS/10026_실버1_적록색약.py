@@ -39,6 +39,10 @@ RRRRR
 
 """
 
+"""
+적록색약은 G를 R로 바꿔서 생각하면 된다.
+"""
+
 import sys
 input = sys.stdin.readline
 
