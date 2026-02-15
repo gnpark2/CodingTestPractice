@@ -62,3 +62,22 @@ def bfs(start_x, start_y, graph):
     return -1
 
 
+# 미로 문제 해결법 : 지나가는 길에 최소 이동 거리를 입력하면서 이동하기
+
+def bfs(current_x, current_y, final_x, final_y):
+    queue = deque([(current_x, current_y)])
+    
+    while queue:
+        current_x, current_y = queue.popleft()
+
+        for dx, dy in directions:
+            nx, ny = current_x + dx, current_y + dy
+
+            if 0 <= nx < N and 0 <= ny < N:
+                if graph[nx][ny] == 0:
+                    graph[nx][ny] = graph[current_x][current_y] + 1 # 최소 거리 수 입력
+                    queue.append((nx, ny))
+
+                if current_x == final_x and current_y == final_y:
+                    return graph[current_x][current_y]
+                    break
