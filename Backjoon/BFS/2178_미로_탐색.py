@@ -58,6 +58,13 @@ N×M크기의 배열로 표현되는 미로가 있다.
 
 """
 
+"""
+readline은 맨 뒤의 '\n'까지 입력받으므로 제거해야함(rstrip)
+미로에서 최소 거리 탐색의 경우 bfs로 풀이
+넓이 우선으로, 노드에 지나야 하는 최소 칸 수를 대입하면서 지나갈 수 있음.
+최종 위치가 가장 n -1, m - 1이므로 별도의 조건없이 출력
+"""
+
 import sys
 from collections import deque
 input = sys.stdin.readline
@@ -77,8 +84,11 @@ def bfs(x, y):
 
             if 0 <= nx < N and 0 <= ny < M :
                 if graph[nx][ny] == 1:
+                    graph[nx][ny] = graph[x][y] + 1
                     queue.append((nx, ny))
 
-for i in range(N):
-    graph.append(list(map(int, input())))
+for _ in range(N):
+    graph.append(list(map(int, input().rstrip())))
 
+bfs(0, 0)
+print(graph[N - 1][M - 1])
