@@ -32,6 +32,11 @@
 
 """
 
+"""
+BFS로 노드를 지나갈 때마다 tmp 증가
+BFS마다 결과값 최대 비교
+"""
+
 import sys
 from collections import deque
 input = sys.stdin.readline
