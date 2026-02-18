@@ -57,26 +57,55 @@ TIMING
 
 """
 
+"""
+준현과 상민 나누어서 계산
+
+buy = jun_money // price[i]
+해당 날짜에 살 수 있는 최대 주식 수
+jun_total = jun_money + jun_stock * price[13]
+마지막 날 기준 총 자산
+
+sung_total = sung_money + sung_stock * price[13]
+성민의 최종 자산
+"""
+
 import sys
 input = sys.stdin.readline
 
 seed = int(input())
-machineDuck = list(map(int, input().split()))
+price = list(map(int, input().split()))
 
-jun[0] = seed
-sung[0] = seed
+jun_money = seed
+jun_stock = 0
 
-junResult = 0
-sungResult = 0
+for i in range(14):
+    if jun_money >= price[i]:
+        buy = jun_money // price[i]
+        jun_stock += buy
+        jun_money -= buy * price[i]
 
-cnt = 0
+jun_total = jun_money + jun_stock * price[13]
 
-for i in range(len(machineDuck)):
-    while jun > machineDuck[i]:
-        cnt += 1
-    jun[i] = cnt
-    junResult = junResult + jun[i] * machineDuck[i] - machineDuck[13]
+sung_money = seed
+sung_stock = 0
 
+for i in range(3, 14):
+    if price[i-3] < price[i-2] < price[i-1]:
+        if sung_stock > 0:
+            sung_money += sung_stock * price[i]
+            sung_stock = 0
 
+    elif price[i-3] > price[i-2] > price[i-1]:
+        if sung_money >= price[i]:
+            buy = sung_money // price[i]
+            sung_stock += buy
+            sung_money -= buy * price[i]
 
-BNP, TIMING, SAMESAME
+sung_total = sung_money + sung_stock * price[13]
+
+if jun_total > sung_total:
+    print("BNP")
+elif jun_total < sung_total:
+    print("TIMING")
+else:
+    print("SAMESAME")
